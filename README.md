@@ -23,3 +23,20 @@ These are the major files in the backend:
 1. cd into frontend
 2. cmd npm install
 3. To run frontend application npm start
+
+
+## The Endpoints Documentation
+
+1. Endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories.
+
+2. [ ] Endpoint to handle GET requests for all available categories.
+
+3. [ ] Endpoint to DELETE question using a question ID.
+
+4. [ ] Endpoint to POST a new question, which will require the question and answer text, category, and difficulty score.
+
+5. [ ] Create a POST endpoint to get questions based on category.
+
+6. [ ] Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question.
+
+7. [ ] Create a POST endpoint to get questions to play the quiz. This endpoint should take a category and previous question parameters and return a random question within the given category if provided, and that is not one of the previous questions.
