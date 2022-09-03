@@ -17,35 +17,35 @@ class FormView extends Component {
 
   componentDidMount(){
     $.ajax({
-      url: `/categories`,
+      url: `/api/v1.0/categories`,
       type: "GET",
       success: (result) => {
-        this.setState({ categories: result.categories })
+        this.setState({ categories: result.categories });
         return;
       },
       error: (error) => {
-        alert('Unable to load categories. Please try your request again')
+        alert("Unable to load categories. Please try your request again");
         return;
-      }
-    })
+      },
+    });
   }
 
 
   submitQuestion = (event) => {
     event.preventDefault();
     $.ajax({
-      url: '/questions',
+      url: "/api/v1.0/questions",
       type: "POST",
-      dataType: 'json',
-      contentType: 'application/json',
+      dataType: "json",
+      contentType: "application/json",
       data: JSON.stringify({
         question: this.state.question,
         answer: this.state.answer,
         difficulty: this.state.difficulty,
-        category: this.state.category
+        category: this.state.category,
       }),
       xhrFields: {
-        withCredentials: true
+        withCredentials: true,
       },
       crossDomain: true,
       success: (result) => {
@@ -53,10 +53,10 @@ class FormView extends Component {
         return;
       },
       error: (error) => {
-        alert('Unable to add question. Please try your request again')
+        alert("Unable to add question. Please try your request again");
         return;
-      }
-    })
+      },
+    });
   }
 
   handleChange = (event) => {

@@ -17,7 +17,8 @@ These are the major files in the backend:
 2. create virtual environment i.e python3 -m venv env
 3. pip Install the requirements.txt example -  pip install -r requirments
 4. set the FLASK_APP i.e export FLASK_APP=flaskr/__init__.py
-5. Run the app - flask run
+5. set the Enviroment to 'Development i.e 'export FLASK_ENV=development
+6. Run the app - flask run
 
 ##  To start the Application - FrontEnd
 1. cd into frontend
@@ -27,13 +28,44 @@ These are the major files in the backend:
 
 ## The Endpoints Documentation
 
+## 1. GET '/api/v1.0/categories'
+
+Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
+Request Arguments: None
+Returns: An object with a single key, categories, that contains an object of id: category_string key: value pairs.
+{
+   "categories" : {
+      "1" : "Academy",
+      "2" : "Social",
+      "3" : "Entertainment",
+      "4" : "Science"
+   },
+   "success" : true
+}
+## 1. GET '/api/v1.0/questions'
+
+Fetches a dictionary of questions in which the keys are the ids and the value is the corresponding string of the category
+Request Arguments: None
+Returns: An object with a single key, categories, that contains an object of id: category_string key: value pairs.
+{
+   "categories" : {
+      "1" : "Academy",
+      "2" : "Social",
+      "3" : "Entertainment",
+      "4" : "Science"
+   },
+   "success" : true
+}
+
+
+
 1. Endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories.
 
-2. [ ] Endpoint to handle GET requests for all available categories.
+2. Endpoint to handle GET requests for all available categories.
 
-3. [ ] Endpoint to DELETE question using a question ID.
+3. Endpoint to DELETE question using a question ID.
 
-4. [ ] Endpoint to POST a new question, which will require the question and answer text, category, and difficulty score.
+4. Endpoint to POST a new question, which will require the question and answer text, category, and difficulty score.
 
 5. [ ] Create a POST endpoint to get questions based on category.
 

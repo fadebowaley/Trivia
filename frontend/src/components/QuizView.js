@@ -22,7 +22,7 @@ class QuizView extends Component {
 
   componentDidMount() {
     $.ajax({
-      url: `/categories`,
+      url: `/api/v1.0/categories`,
       type: "GET",
       success: (result) => {
         console.log(result);

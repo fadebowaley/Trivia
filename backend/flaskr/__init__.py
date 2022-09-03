@@ -39,7 +39,7 @@ def create_app(test_config=None):
   
 
     """ 3. GET requests  for all available categories."""
-    @app.route('/categories', methods=['GET'])
+    @app.route('/api/v1.0/categories', methods=['GET'])
     def get_categories():
         try:
           categories = Category.query.all()
@@ -56,7 +56,7 @@ def create_app(test_config=None):
 
 
     """ 4. GET requests including pagination (every 10 questions). """      
-    @app.route('/questions', methods=['GET'])
+    @app.route('/api/v1.0/questions', methods=['GET'])
     def get_questions():
         try:
           questions = Question.query.all()
@@ -77,7 +77,7 @@ def create_app(test_config=None):
 
 
     """5. endpoint to DELETE question using a question ID """     
-    @app.route('/questions/<int:id>',methods=['DELETE'])
+    @app.route('/api/v1.0/questions/<int:id>', methods=['DELETE'])
     def delete_question(id):
         question =  Question.query.filter( Question.id ==id).one_or_none()
         if not question:
@@ -94,7 +94,7 @@ def create_app(test_config=None):
     
     
     """6. Endpoint to POST a new question"""
-    @app.route('/questions',methods=['POST'])
+    @app.route('/api/v1.0/questions', methods=['POST'])
     def add_question():
         try:
           data = request.get_json()
@@ -121,7 +121,7 @@ def create_app(test_config=None):
         
 
     """ 7. Endpoint to get questions based on category """
-    @app.route('/categories/<int:id>/questions', methods=['GET'])
+    @app.route('/api/v1.0/categories/<int:id>/questions', methods=['GET'])
     def get_questions_by_category(id):
         try:
           category = Category.query.get_or_404(id)
