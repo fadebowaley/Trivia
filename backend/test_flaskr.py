@@ -88,7 +88,7 @@ class TriviaTestCase(unittest.TestCase):
     def test_if_add_new_questions_works(self):
         question_before_adding = Question.query.all()
         res = self.client().post('/api/v1.0/questions', json={
-            'question': 'test Question? ',
+            'question': 'Why Unit Testing? ',
             'answer': 'unit testing',
             'difficulty': 4,
             'category': '5'
@@ -99,6 +99,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'],True)
         self.assertTrue(len(question_after_adding) -  len(question_before_adding)==1)
     
+
     def test_if_add_new_question_fails(self):
         res = self.client().post('/api/v1.0/questions', json ={})
         data = json.loads(res.data)
@@ -107,21 +108,21 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['message'],"unprocessable")
         
     def test_if_search_question_works(self):
-        res = self.client().post('/search', json={'searchTerm': 'test'})
+        res = self.client().post('/api/v1.0/search', json={'searchTerm': 'Unit'})
         data = json.loads(res.data)
         self.assertEqual(res.status_code,200)
         self.assertEqual(data['success'],True)        
     
     def test_if_search_question_fails(self):
-        res = self.client().post('/search',json={'searchTerm': 22})
+        res = self.client().post('/api/v1.0/search', json={'searchTerm': 21052024})
         data = json.loads(res.data)
         self.assertEqual(res.status_code,404)  
         self.assertEqual(data['success'],False)
         self.assertEqual(data['message'],"resources not found")  
         
-    def test_play_trivia_quiz(self):
-        res = self.client().post('/play', json={
-                                                'previous_questions':[19,20],
+    def test_play_trivia_quiz_works(self):
+        res = self.client().post('/api/v1.0/play', json={
+                                                'previous_questions':[13,14],
                                                 'quiz_category':{'id':'1','type':'Science'}
                                                      })
         data = json.loads(res.data)
@@ -130,7 +131,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['question'])
      
     def test_if_play_trivia_quiz_fails(self):
-        res = self.client().post('/play', json={})   
+        res = self.client().post('/api/v1.0/play', json={})
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code,400)

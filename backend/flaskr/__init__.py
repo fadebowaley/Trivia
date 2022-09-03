@@ -136,9 +136,35 @@ def create_app(test_config=None):
           print(e)
           abort(500)
 
+    """ 7. Endpoint to search a question """
+    @app.route('/api/v1.0/search', methods=['POST'])
+    def search_question():
+        try:
+          body = request.get_json()
+          searchTerm = body.get('searchTerm')
+          questions = Question.query.filter(
+              Question.question.ilike(f'%{searchTerm}%')).all()
+          current_quesitons = paginate_questions(request, questions)
+          total_questions = len(Question.query.all())
+          category = Category.query.order_by(Category.id).all()
+
+          if (len(questions) == 0) or not category:
+              abort(404)
+
+          return jsonify({
+              'success': True,
+              'questions': current_quesitons,
+           
+              'current_categroy': category[0].format()['type']
+          })
+        except Exception as e:
+          print(e)
+          abort(404)
 
 
-    @app.route('/play', methods=['POST'])
+
+    """ 7. Endpoint to play Trivia question """
+    @app.route('/api/v1.0/play', methods=['POST'])
     def play_quiz():
         questions = None  
         body = request.get_json()
@@ -154,12 +180,8 @@ def create_app(test_config=None):
 
           else:
             questions = Question.query.filter_by(category=category['id']).all()
-            question = questions[random.randrange(0,len(questions),1)]
-        
-          # for q in questions:
-          #   if q.id not in previous_questions:
-          #     current_question = q.format()
-          #     break
+            question = questions[random.randrange(0,len(questions),1)]       
+      
             
           return jsonify({
             'success':True,
@@ -170,30 +192,6 @@ def create_app(test_config=None):
           abort(400) 
 
 
-
-    @app.route('/search',methods=['POST'])
-    def search_question():
-        try:
-          body = request.get_json()
-          searchTerm = body.get('searchTerm')
-          questions = Question.query.filter(Question.question.ilike(f'%{searchTerm}%')).all()
-          current_quesitons = paginate_questions(request,questions)
-          total_questions = len(Question.query.all())
-          category = Category.query.order_by(Category.id).all()
-
-          if (len(questions) == 0) or not category:
-              abort(404)
-                  
-          return jsonify({
-              'success':True,
-              'questions': current_quesitons,
-              'total_questions': total_questions,
-              'current_categroy': category[0].format()['type']
-            })
-        except Exception as e:
-          print(e)
-          abort(404)
-                  
  
           
       

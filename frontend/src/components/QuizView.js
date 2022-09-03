@@ -51,7 +51,7 @@ class QuizView extends Component {
     }
 
     $.ajax({
-      url: "/play",
+      url: "/api/v1.0/play",
       type: "POST",
       dataType: "json",
       contentType: "application/json",
