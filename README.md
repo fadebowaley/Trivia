@@ -1,6 +1,18 @@
-## Full Stack Trivia - Project 2
+## Full Stack Trivia - Project 2 [https://github.com/fadebowaley]
 
 [API ENDPOINTS DOCUMENTATIONS]
+
+## Endpoints - fixed as commented on review 
+GET '/api/v1.0/categories'
+GET '/api/v1.0/questions'
+GET '/api/v1.0/categories/<int:id>/questions'
+POST '/api/v1.0/questions'
+POST '/api/v1.0/search'
+POST '/api/v1.0/play'
+DELETE '/api/v1.0/questions/<int:id>'
+
+
+
 
 ## 1. GET '/api/v1.0/categories'
 
@@ -57,7 +69,7 @@ For example:
 curl --data "{'question': 'test Question? ', 'answer': 'unit testing','difficulty': 4, 'category': '5'}" -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/api/v1.0/questions/  
  returns {success: True}
 
-## 5.GET '/api/v1.0/categories/<int:id>/questions'
+## 5. GET '/api/v1.0/categories/<int:id>/questions'
 
 This is GET endpoint to get all questions based on category, it returns True or False based on request and response for example:
 
@@ -148,7 +160,7 @@ These are the major files in the backend:
 6. Run the app - flask run
 
 ## To start the Application - FrontEnd
-
 1. cd into frontend
+
 2. cmd npm install
 3. To run frontend application npm start
